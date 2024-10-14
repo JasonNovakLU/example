@@ -54,6 +54,7 @@
             position: fixed;
             width: 100%;
             bottom: 0;
+            transition: background-color 0.5s, color 0.5s; /* Smooth transition */
         }
         a {
             color: #007bff; /* Link color */
@@ -77,6 +78,13 @@
         }
         footer.dark-mode {
             background-color: #222; /* Dark footer background */
+            color: white; /* Light text in footer */
+        }
+        a.dark-mode {
+            color: #66aaff; /* Link color in dark mode */
+        }
+        a.dark-mode:hover {
+            color: #4a99cc; /* Darker shade on hover in dark mode */
         }
     </style>
 </head>
@@ -86,7 +94,7 @@
         <p>Email: <a href="mailto:jasonnovak@lewisu.edu">jasonnovak@lewisu.edu</a></p>
         <p>Discord: jasonnovaklu_69213</p>
         <img src="images/me.png" alt="me picture" width="150">
-        <button id="theme-toggle">Dark Mode</button>
+        <button id="theme-toggle">Toggle Theme</button> <!-- Theme toggle button -->
     </header>
 
     <section>
@@ -114,9 +122,13 @@
         const toggleButton = document.getElementById('theme-toggle');
         toggleButton.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            const elementsToToggle = [header, ...document.querySelectorAll('h2, h3, h4, h5, h6, ul'), footer];
+            const elementsToToggle = [document.querySelector('header'), document.querySelector('footer'), ...document.querySelectorAll('h2, h3, h4, h5, h6')];
             elementsToToggle.forEach(element => {
                 element.classList.toggle('dark-mode');
+                // Toggle link styles in dark mode
+                element.querySelectorAll('a').forEach(link => {
+                    link.classList.toggle('dark-mode');
+                });
             });
         });
     </script>
