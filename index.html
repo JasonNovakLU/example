@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jason's GTKEO</title>
     <style>
-        /* Existing styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -27,6 +26,12 @@
             color: black;
             text-align: center;
             font-weight: normal;
+        }
+        h3, h6 {
+            font-size: 15px;
+        }
+        h4, h5 {
+            font-size: 22px;
         }
         ul {
             list-style-position: inside;
@@ -59,51 +64,6 @@
             text-decoration: underline;
             color: #0021fa;
         }
-
-        /* New styles for the navigation menu */
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
-        }
-        nav ul {
-            display: flex;
-            padding: 0;
-            margin: 0;
-        }
-        nav li {
-            position: relative;
-            padding: 15px 20px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        /* Dropdown menu styles */
-        .dropdown {
-            display: none;
-            position: absolute;
-            background-color: #444;
-            padding: 10px 0;
-            min-width: 160px;
-            z-index: 1;
-        }
-        li:hover .dropdown {
-            display: block;
-        }
-        .dropdown a {
-            color: #f0f0f0;
-            padding: 10px 15px;
-            display: block;
-        }
-        .dropdown a:hover {
-            background-color: #555;
-        }
-
-        /* Dark mode styles */
         body.dark-mode {
             background-color: #333;
             color: white; 
@@ -111,10 +71,41 @@
         header.dark-mode {
             color: lightgray; 
         }
+        h2.dark-mode, h3.dark-mode, h4.dark-mode, h5.dark-mode, h6.dark-mode {
+            color: white; 
+        }
         footer.dark-mode {
             background-color: #222; 
             color: white;
         }
+        a.dark-mode {
+            color: #66aaff; 
+        }
+        a.dark-mode:hover {
+            color: #4a99cc; 
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            h4, h5 {
+                font-size: 18px; 
+            }
+        }
+        /* Add this CSS for the button animation */
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button.clicked {
+            transform: scale(1.1);
+        }
+        
+        /* Other styles... */
     </style>
 </head>
 <body>
@@ -125,24 +116,8 @@
         <img src="images/me.png" alt="Photo of Jason Novak" width="150" loading="lazy">
     </header>
 
-    <!-- Responsive Navigation Menu -->
-    <nav>
-        <ul>
-            <li><a href="#introduction">Introduction</a></li>
-            <li>
-                <a href="#hobbies">Hobbies</a>
-                <div class="dropdown">
-                    <a href="#piano">Piano</a>
-                    <a href="#chess">Chess</a>
-                </div>
-            </li>
-            <li><a href="#fun-fact">Fun Fact</a></li>
-            <li><button id="theme-toggle" aria-label="Toggle dark mode">Dark Mode</button></li>
-        </ul>
-    </nav>
-
     <section>
-        <h2 id="introduction"><b>Introduction</b></h2>
+        <h2><b>Introduction</b></h2>
         <h3>Hi, my name is Jason, I'm 18, and I am a first-year at Lewis University. I live in Romeoville with both of my parents, and I am an only child. My major is computer science, and I don't have a minor yet.</h3>
         <h4><b>What I Hope to Learn in this Course</b></h4>
         <ul>
@@ -151,20 +126,33 @@
         </ul>
         <h5><b>My Favorite Hobby / Activity</b></h5>
         <ul>
-            <li id="piano">Piano, a song I can play: <a href="https://www.youtube.com/watch?v=BV7RkEL6oRc" target="_blank" rel="noopener noreferrer"> song</a></li>
-            <li id="chess">Chess, you can add me on chess.com here: <a href="https://www.chess.com/member/bigdawgbignutz" target="_blank" rel="noopener noreferrer"> my-chess.com</a></li>
+            <li>Piano, a song I can play: <a href="https://www.youtube.com/watch?v=BV7RkEL6oRc" target="_blank" rel="noopener noreferrer"> song</a></li>
+            <li>Chess, you can add me on chess.com here: <a href="https://www.chess.com/member/bigdawgbignutz" target="_blank" rel="noopener noreferrer"> my-chess.com</a></li>
         </ul>
         <h5><b>Fun Fact</b></h5>
-        <h6 id="fun-fact">I can solve a Rubik's cube in like a minute</h6>
+        <h6>I can solve a Rubik's cube in like a minute</h6>
+        <div style="text-align: center;"> 
+            <button id="theme-toggle" aria-label="Toggle dark mode">Dark Mode</button>
+        </div>
     </section>
-
+    
     <footer>
         <p>&copy; 2024 Jason Novak | <a href="mailto:jasonnovak@lewisu.edu">Contact me</a></p>
     </footer>
 
     <script>
         const toggleButton = document.getElementById('theme-toggle');
+
         toggleButton.addEventListener('click', () => {
+            // Add the clicked class for animation
+            toggleButton.classList.add('clicked');
+
+            // Remove the clicked class after 300ms
+            setTimeout(() => {
+                toggleButton.classList.remove('clicked');
+            }, 300);
+
+            // Toggle dark mode
             document.body.classList.toggle('dark-mode');
             const elementsToToggle = [document.querySelector('header'), document.querySelector('footer'), ...document.querySelectorAll('h2, h3, h4, h5, h6')];
             elementsToToggle.forEach(element => {
