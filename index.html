@@ -1,54 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=YourFont&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Jason's GTKEO</title>
+	<style>
+    	:root {
+        	--primary-color: #000000;
+        	--secondary-color: grey;
+        	--background-color: #f0f0f0;
+        	--hover-color: darkblue;
+    	}
+    	body {
+        	font-family: Arial, sans-serif;
+        	background-color: var(--background-color);
+        	margin: 0;
+        	padding: 0;
+    	}
+    	header {
+        	text-align: center;
+        	background-color: var(--primary-color);
+        	color: var(--secondary-color);
+        	padding: 20px 0;
+    	}
+    	header img {
+        	border-radius: 25%;
+        	margin-top: 20px;
+        	width: 150px;
+    	}
+    	h1, h2, h3, h4, h5, h6 {
+        	color: black;
+        	text-align: center;
+        	font-weight: normal;
+    	}
+    	ul {
+        	 list-style-position: inside;
+        	 text-align: center;
+        	 padding-left: 0;
+        	 margin: 0 auto;
+        	 width: fit-content;     
+    	}
+	li {
+        margin-bottom: 10px;
+    }
+    a {
+        color: blue;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+    a:hover {
+        color: var(--hover-color);
+        text-decoration: underline;
+    }
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+    @media (max-width: 768px) {
+        header img {
+            width: 100px;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 90%;
+        }
+        ul {
+            width: 90%;
+        }
+    }
+	</style>
+    <script>
+        function greetUser() {
+            const hour = new Date().getHours();
+            let greeting;
+            if (hour < 12) {
+                greeting = 'Good morning!';
+            } else if (hour < 18) {
+                greeting = 'Good afternoon!';
+            } else {
+                greeting = 'Good evening!';
+            }
+            document.getElementById('greeting').innerText = greeting;
+        }
+        window.onload = greetUser;
+    </script>
 </head>
 <body>
-    <header>
-        <nav>
+	<header>
+    	<h1>Jason Novak</h1>
+    	<p>Email: <a href="mailto:jasonnovak@lewisu.edu">jasonnovak@lewisu.edu</a></p>
+    	<p>Discord: jasonnovaklu_69213</p>
+    	<img src="images/me.png" alt="A picture of Jason Novak">
+	</header>
+
+	<main>
+        <section>
+            <h2><b>Introduction</b></h2>
+            <p id="greeting"></p>
+            <h3>Hi, my name is Jason, I'm 18, and I am a first-year at Lewis University. I live in Romeoville with both of my parents, and I am an only child. My major is computer science, and I don't have a minor yet.</h3>
+            <h4><b>What I Hope to Learn in this Course</b></h4>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li>Learning how to create websites</li>
+                <li>Gaining a basic understanding of programming</li>	
             </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <section id="hero">
-            <h1>Welcome to My Portfolio</h1>
+            <h5><b>My Favorite Hobby / Activity</b></h5>
+            <ul>
+                <li>Piano, a song I can play: <a href="https://www.youtube.com/watch?v=BV7RkEL6oRc" target="_blank">song</a></li>
+                <li>Chess, you can add me on chess.com here: <a href="https://www.chess.com/member/bigdawgbignutz" target="_blank">my-chess.com</a></li>	
+            </ul>
+            <h5><b>Fun Fact</b></h5>
+            <h6>I can solve a Rubik's cube in like a minute</h6>
         </section>
-        
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Your introduction goes here.</p>
-        </section>
-        
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="gallery">
-                <!-- Project items go here -->
-            </div>
-        </section>
-        
-        <section id="contact">
-            <h2>Contact Me</h2>
-            <form action="YOUR_FORM_ENDPOINT" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </section>
-    </main>
-    
-    <footer>
-        <p>&copy; 2024 Your Name</p>
-    </footer>
-    <script src="script.js"></script>
+	</main>
+
+	<footer>
+    	<p>&copy; 2024 Jason Novak | <a href="mailto:jasonnovak@lewisu.edu">Contact me</a></p>
+	</footer>
 </body>
 </html>
