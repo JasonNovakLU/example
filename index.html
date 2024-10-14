@@ -1,134 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Jason's GTKEO</title>
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-	<style>
-    	body {
-        	font-family: 'Roboto', sans-serif; /* Use custom font */
-        	background-color: #f0f0f0;
-        	margin: 0;
-        	padding: 0;
-    	}
-    	header {
-        	text-align: center;
-        	background-color: #000000;
-        	color: grey;
-        	padding: 20px 0;
-    	}
-    	header img {
-        	border-radius: 25%;
-        	margin-top: 20px;
-    	}
-    	
-	h2, h3, h4, h5, h6 {
-        	color: black;
-        	text-align: center;
-        	font-weight: normal; /* Removes bold */
-	}	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason's GTKEO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
 
-	h3 {
-		font-size: 15px;
-	}
+        header {
+            text-align: center;
+            background-color: #000000;
+            color: grey;
+            padding: 20px 0;
+        }
 
-	h4, h5 {
-		font-size: 22px;
-	}
+        header img {
+            border-radius: 25%;
+            margin-top: 20px;
+        }
 
-	h6 {
-		font-size: 15px;
-	}
+        h2, h3, h4, h5, h6 {
+            color: black;
+            text-align: center;
+            font-weight: normal; /* Removes bold */
+        }
 
-	ul {
-        list-style-position: inside;
-        text-align: center;
-        padding-left: 0;
-        margin: 0 auto;
-        width: fit-content;     
-    }
+        h3 {
+            font-size: 15px;
+        }
 
-	li {
-        margin-bottom: 10px;
-    }
+        h4, h5 {
+            font-size: 22px;
+        }
 
-	section {
-		padding: 20px;
-		margin: 20px;
-		background-color: white; /* Section background */
-		border-radius: 10px; /* Rounded corners */
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
-		padding-bottom: 100px; /* Space before footer */
-	}
+        h6 {
+            font-size: 15px;
+        }
 
-	a {
-		color: #007bff; /* Link color */
-		text-decoration: none; /* Remove underline */
-	}
+        ul {
+            list-style-position: inside;
+            text-align: center;
+            padding-left: 0;
+            margin: 0 auto;
+            width: fit-content;
+        }
 
-	a:hover {
-		text-decoration: underline; /* Underline on hover */
-		color: #0056b3; /* Darker shade on hover */
-	}
+        li {
+            margin-bottom: 10px;
+        }
 
-	footer {
-        text-align: center;
-        padding: 20px;
-        background-color: black; /* Black footer background */
-        color: white; /* White text color */
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-        border-top: 2px solid #007bff; /* Colored top border */
-        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Shadow effect */
-    }
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: white; /* Section background */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            padding-bottom: 100px; /* Space before footer */
+        }
 
-	@media (max-width: 600px) {
-		header, footer {
-			padding: 15px; /* Reduce padding */
-		}
-		
-		section {
-			margin: 10px; /* Adjust margins */
-		}
+        a {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Remove underline */
+        }
 
-		h2, h3, h4, h5, h6 {
-			font-size: 90%; /* Reduce font size */
-		}
-	}
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+            color: #0056b3; /* Darker shade on hover */
+        }
 
-	html {
-		scroll-behavior: smooth; /* Smooth scrolling */
-	}
-	</style>
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: black; /* Black footer background */
+            color: white; /* White text color */
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            border-top: 2px solid #007bff; /* Colored top border */
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Shadow effect */
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            header, footer {
+                padding: 15px; /* Reduce padding */
+            }
+
+            section {
+                margin: 10px; /* Adjust margins */
+            }
+
+            h2, h3, h4, h5, h6 {
+                font-size: 90%; /* Reduce font size */
+            }
+        }
+
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling */
+        }
+    </style>
 </head>
 <body>
-	<header>
-    	<h1>Jason Novak</h1>
-    	<p>Email: <a href="mailto:jasonnovak@lewisu.edu">jasonnovak@lewisu.edu</a></p>
-    	<p>Discord: jasonnovaklu_69213</p>
-    	<img src="images/me.png" alt="me picture" width="150">
-	</header>
+    <header>
+        <h1>Jason Novak</h1>
+        <p>Email: <a href="mailto:jasonnovak@lewisu.edu">jasonnovak@lewisu.edu</a></p>
+        <p>Discord: jasonnovaklu_69213</p>
+        <img src="images/me.png" alt="me picture" width="150">
+    </header>
 
-	<section> 
-	<h2><b>Introduction</b></h2>
-	<h3>Hi, my name is Jason, im 18, and I am a first year at Lewis University. I live in Romeoville with both of my parents, and I am an only child. My major is computer science, and I don't have a minor yet.</h3>
-	<h4><b>What I Hope to Learn in this Course</b></h4>
-		<ul>
-			<li>Learning how to create websites</li>
-			<li>Gaining a basic understanding of programming</li>	
-		</ul>
-	<h5><b>My Favorite Hobby / Activity</b></h5>
-		<ul>
-			<li>Piano, a song i can play: <a href="https://www.youtube.com/watch?v=BV7RkEL6oRc" target="_blank"> song</a></li>
-			<li>Chess, you can add me on chess.com here: <a href="https://www.chess.com/member/bigdawgbignutz" target="_blank"> my-chess.com</a></li>	
-		</ul>
-	<h5><b>Fun Fact</b></h5>
-	<h6>i can solve a rubix cube in like a minute</h6>
-	</section>
-	<footer>
-    	<p>&copy; 2024 Jason Novak | <a href="mailto:jasonnovak@lewisu.edu">Contact me</a></p>
-	</footer>
+    <section>
+        <h2><b>Introduction</b></h2>
+        <h3>Hi, my name is Jason, im 18, and I am a first year at Lewis University. I live in Romeoville with both of my parents, and I am an only child. My major is computer science, and I don't have a minor yet.</h3>
+        <h4><b>What I Hope to Learn in this Course</b></h4>
+        <ul>
+            <li>Learning how to create websites</li>
+            <li>Gaining a basic understanding of programming</li>
+        </ul>
+        <h5><b>My Favorite Hobby / Activity</b></h5>
+        <ul>
+            <li>Piano, a song I can play: <a href="https://www.youtube.com/watch?v=BV7RkEL6oRc" target="_blank"> song</a></li>
+            <li>Chess, you can add me on chess.com here: <a href="https://www.chess.com/member/bigdawgbignutz" target="_blank"> my-chess.com</a></li>
+        </ul>
+        <h5><b>Fun Fact</b></h5>
+        <h6>I can solve a Rubik's cube in like a minute</h6>
+
+        <!-- Button to open modal -->
+        <button id="myBtn">Open Modal</button>
+
+        <!-- Modal Structure -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>More Information</h2>
+                <p>This is additional content displayed in a modal!</p>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq">
+            <h3 class="question">What is your favorite hobby?</h3>
+            <p class="answer" style="display: none;">I love playing the piano!</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Jason Novak | <a href="mailto:jasonnovak@lewisu.edu">Contact me</a></p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Modal Script
+        const modal = document.getElementById("myModal");
+        const btn = document.getElementById("myBtn");
+        const span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Interactive FAQ Section
+        document.querySelectorAll('.faq').forEach(item => {
+            item.querySelector('.question').addEventListener('click', () => {
+                const answer = item.querySelector('.answer');
+                answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+
+        // Form Validation
+        document.getElementById("contactForm").onsubmit = function (e) {
+            const email = document.getElementById("email").value;
+            if (!validateEmail(email)) {
+                e.preventDefault(); // Prevent form submission
+                alert("Please enter a valid email address.");
+            }
+        }
+
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+    </script>
 </body>
 </html>
