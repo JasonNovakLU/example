@@ -94,7 +94,6 @@
                 font-size: 18px; 
             }
         }
-        /* Add this CSS for the button animation */
         button {
             padding: 10px 15px;
             font-size: 16px;
@@ -105,7 +104,6 @@
             transform: scale(1.1);
         }
         
-        /* Other styles... */
     </style>
 </head>
 <body>
@@ -144,15 +142,12 @@
         const toggleButton = document.getElementById('theme-toggle');
 
         toggleButton.addEventListener('click', () => {
-            // Add the clicked class for animation
             toggleButton.classList.add('clicked');
 
-            // Remove the clicked class after 300ms
             setTimeout(() => {
                 toggleButton.classList.remove('clicked');
             }, 300);
 
-            // Toggle dark mode
             document.body.classList.toggle('dark-mode');
             const elementsToToggle = [document.querySelector('header'), document.querySelector('footer'), ...document.querySelectorAll('h2, h3, h4, h5, h6')];
             elementsToToggle.forEach(element => {
